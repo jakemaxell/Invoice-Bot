@@ -1,9 +1,7 @@
-import tkinter as Tk
 import csv
+import tkinter as Tk
 from tkinter.filedialog import askopenfilename
 from tkinter import *
-from tkinter import messagebox
-from invoiceobject import *
 from fordbotobject import *
 
 # Function that asks the user to select a csv file
@@ -15,16 +13,11 @@ def askForFile():
     return filename
 
 # Function that writes over the initial csv file
-def writeCSV(listOfInvoices, filename):
-    header = ['Pro Number', 'Amount Billed', 'Amount Paid', 'Base Reason', 'Paid Date', 'Shipper Name', 'Disposition']
-    data = [person.getProNumber(), person.getAmountBilled(), person.getAmountPaid(), person.getBaseReason(), person.getPaidDate(), person.getShipperName(), person.getDisposition()]
+def writeCSV(connection, curs, filename):
+    sql_query = "SELECT * FROM invoices WHERE disposition != ' ';"
+    curs.execute(sql_query)
 
-    with open(filename, 'w', newline = "") as csvFile:
-        writer = csv.writer(csvFile)
-        writer.writerow(header)
-
-        for x in listOfInvoices:
-            data = [x.getProNumber(), x.getAmountBilled(), x.getAmountPaid(), x.getBaseReason(), x.getPaidDate(), x.getShipperName(), x.getDisposition()]
-            writer.writerow(data)
-
-        csvFile.close()
+    with open(filename, "w", newline = '') as csvfile:
+        csvWriter = csv.writer(csvfile)
+        csvWriter.writerow([i[0] for i in curs.description])
+        csvWriter.writerows(curs)
