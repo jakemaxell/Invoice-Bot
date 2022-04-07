@@ -2,7 +2,7 @@
 # Created by: Jacob Maxwell
 # Start date: 6/24/2021
 # Last updated: 7/14/2021
-# CassPort credentials: (username, password, url) >> (BUCHANANC1, Red5454*, https://my.cassport.com/CassPort/#/)
+# CassPort credentials: (username, password, url) 
 # Purpose: Create a bot that checks the statuses on invoices and returns the statuses and
 #          any errors
 import tkinter as Tk
