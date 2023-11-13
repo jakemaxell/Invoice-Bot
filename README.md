@@ -1,0 +1,1 @@
+I built this bot for the company I worked for. It is designed to take in a csv file of invoice numbers then in a private window (one that is unseen and cannot be interacted with by the user) it searches for those invoices and scrapes the data from the website then collects all unpaid invoices and resaves them to a csv file.
